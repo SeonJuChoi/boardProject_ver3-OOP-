@@ -1,0 +1,62 @@
+<?
+session_start();
+
+if(!isset($_SESSION['user_alias'])) {
+ echo "<script>alert('로그인 하세요.')</script>";
+ echo "<script>location.href=history.back();</script>";
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+</head>
+<script src="../js/jquery-3.2.1.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script>
+    function articleCheck() {
+        var title = document.getElementById("title");
+        var contents = document.getElementById("contents");
+        var writeForm = document.getElementById("writeForm");
+
+        if(title.value == "")
+            alert("제목을 입력하세요!");
+        else if(contents.value == "")
+            alert("내용을 입력하세요!");
+        else
+            writeForm.submit();
+
+    }
+</script>
+<div class="container">
+<h2>글쓰기 페이지</h2>
+<form action="../index.php" method="post" id="writeForm">
+    <table id="editTable">
+        <tr>
+            <td>제목 : </td>
+            <td><input type="text" class='form-control' name="title" id="title">
+            <input type="hidden" name="write">
+            </td>
+
+        </tr>
+        <tr>
+            <td>작성자 : &nbsp;</td>
+            <?php
+              $writer = $_SESSION['user_alias'];
+              echo "<td><input type='text' value=$writer class='form-control' readonly></td>"
+            ?>
+        </tr>
+        <tr>
+            <td>내용 : </td>
+            <td><textarea name="contents" class='form-control' rows="10" id="contents"></textarea></td>
+        </tr>
+    </table>
+<input type="button" id="write" value="작성하기" class='btn btn-info' onclick="articleCheck()">
+<input type="button" id="cancel" value="취소" class='btn btn-default' data-dismiss="modal">
+</form>
+</div>
+</body>
+</html>

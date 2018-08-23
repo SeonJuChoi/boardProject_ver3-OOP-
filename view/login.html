@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function login() {
+        var idObj = document.getElementById("idBox").value;
+        var pwObj = document.getElementById("pwBox").value;
+        var loginForm = document.getElementById("loginForm");
+
+        if(idObj == "")
+            alert("id를 입력하세용");
+        else if(pwObj == "")
+            alert("pw를 입력하세용");
+        else
+            loginForm.submit();
+
+    }
+</script>
+<body>
+<h1>이쁘게~~~~~~login</h1>
+<table id="loginArea">
+<form method="post" action="../index.php" id="loginForm">
+<tr>
+    <td>아이디 : </td>
+    <td><input type="text" id="idBox" name="id"></td>
+</tr>
+<tr>
+    <td>비밀번호 : </td>
+    <td><input type="password" id="pwBox" name="pw"></td>
+</tr>
+<tr>
+    <td><input type="button" id="loginBt" value="로그인" onclick="login()"></td>
+</tr>
+</form>
+</table>
+</body>
+</html>
